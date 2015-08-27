@@ -105,8 +105,8 @@ mkdir -p /etc/pki/instack-certs
 mkdir -p /home/stack/{images,templates} 
 chown -R stack.stack /home/stack
 
-echo "Installing  python-rdomanager-oscplugin"
-sudo -H -u stack bash -c 'sudo yum install -y python-rdomanager-oscplugin' 
+echo "Installing  python-rdomanager-oscplugin screen"
+sudo -H -u stack bash -c 'sudo yum install -y python-rdomanager-oscplugin screen' 
 sudo -H -u stack bash -c 'sudo cp /usr/share/instack-undercloud/undercloud.conf.sample ~/undercloud.conf' 
 chown -R stack.stack /home/stack/undercloud.conf
 cd /home/stack
@@ -120,7 +120,7 @@ cp /home/stack/undercloud.pem /etc/pki/instack-certs/
 semanage fcontext -a -t haproxy_exec_t "/etc/pki/instack-certs(/.*)?"
 restorecon -Rv /etc/pki/instack-certs 
 
-echo"Modifying undercloud.conf"
+echo "Modifying undercloud.conf"
 sudo -H -u stack bash -c "sed -i 's|#image_path = \.|image_path = /home/stack/images|g' /home/stack/undercloud.conf" 
 sudo -H -u stack bash -c "sed -i 's|#local_ip = 192.0.2.1/24|local_ip = $LOCAL_IP|g' /home/stack/undercloud.conf" 
 sudo -H -u stack bash -c "sed -i 's|#undercloud_public_vip = 192.0.2.2|undercloud_public_vip = $UNDERCLOUD_PUBLIC_VIP|g' /home/stack/undercloud.conf" 
@@ -139,4 +139,6 @@ sudo -H -u stack bash -c "sed -i 's|#undercloud_debug = true|undercloud_debug = 
 
 echo "Launch the following command as user STACK!"
 echo "su - stack"
+echo "screen"
 echo "export HOSTNAME=$FQDN && openstack undercloud install"
+echo "CTRL a d"
