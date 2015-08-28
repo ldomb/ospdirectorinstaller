@@ -24,7 +24,7 @@ UNDERCLOUD_PUBLIC_VIP=192.168.2.3
 UNDERCLOUD_ADMIN_VIP=192.168.2.4
 # Certificate file to use for OpenStack service SSL connections.
 # (string value)
-UNDERCLOUD_SERVICE_CERTIFICATE=undercloud.pem
+#UNDERCLOUD_SERVICE_CERTIFICATE=undercloud.pem --> This is not working yet
 # Network interface on the Undercloud that will be handling the PXE
 # boots and DHCP for Overcloud instances. (string value)
 LOCAL_IFACE=enp2s4
