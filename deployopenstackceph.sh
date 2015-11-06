@@ -5,7 +5,7 @@ openstack overcloud deploy --templates \
 -e /home/stack/templates/environments/storage-environment.yaml \
 -e /home/stack/templates/network-environment.yaml \
 -e /home/stack/templates/limits.yaml \
--e /home/stack/templates/infra-environment.yaml \
+-e /home/stack/templates/ceph-environment.yaml \
 -e /home/stack/templates/firstboot-environment.yaml \
 --control-flavor control \
 --compute-flavor compute \
