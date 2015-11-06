@@ -99,7 +99,7 @@ subscription-manager repos --disable='*'
 subscription-manager repos --enable=rhel-7-server-rpms --enable=rhel-7-server-optional-rpms --enable=rhel-7-server-extras-rpms --enable=rhel-7-server-openstack-7.0-rpms --enable=rhel-7-server-openstack-7.0-director-rpms
 
 echo "Updating system"
-yum install screen -y && update -y
+yum install screen libguestfs-tools-c -y && update -y
 
 mkdir -p /etc/pki/instack-certs
 mkdir -p /home/stack/{images,templates} 
