@@ -1,0 +1,22 @@
+heat_template_version: 2014-10-16
+
+resources:
+  userdata:
+  type: OS::Heat::MultipartMime
+  properties:
+  parts:
+  - config: {get_resource: wipe_ceph_disk}
+
+  wipe_ceph_disk:
+  type: OS::Heat::SoftwareConfig
+  properties:
+  config: |
+  #!/bin/bash
+  /bin/hostnamectl | grep 'hostname' | grep ceph -q ;
+  if [ $? == 0 ]; then
+  for i in {b}; do dd if=/dev/zero of /dev/sd$ bs=1024k count=100 && sgdisk -g /dev/sd$;done
+  fi
+
+outputs:
+  OS::stack_id:
+  value: {get_resource: userdata}
