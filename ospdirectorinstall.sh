@@ -111,14 +111,15 @@ sudo -H -u stack bash -c 'sudo cp /usr/share/instack-undercloud/undercloud.conf.
 chown -R stack.stack /home/stack/undercloud.conf
 cd /home/stack
 
-echo "Create Certs"
-openssl genrsa -out privkey.pem 2048
-sudo openssl req -new -x509 -key privkey.pem -out cacert.pem -days 365
-cat /home/stack/cacert.pem privkey.pem > /home/stack/undercloud.pem 
-chown stack.stack /home/stack/{undercloud.pem,cacert.pem,privkey.pem}
-cp /home/stack/undercloud.pem /etc/pki/instack-certs/
-semanage fcontext -a -t haproxy_exec_t "/etc/pki/instack-certs(/.*)?"
-restorecon -Rv /etc/pki/instack-certs 
+ 
+#echo "Create Certs"
+#openssl genrsa -out privkey.pem 2048
+#sudo openssl req -new -x509 -key privkey.pem -out cacert.pem -days 365
+#cat /home/stack/cacert.pem privkey.pem > /home/stack/undercloud.pem 
+#chown stack.stack /home/stack/{undercloud.pem,cacert.pem,privkey.pem}
+#cp /home/stack/undercloud.pem /etc/pki/instack-certs/
+#semanage fcontext -a -t haproxy_exec_t "/etc/pki/instack-certs(/.*)?"
+#restorecon -Rv /etc/pki/instack-certs 
 
 echo "Modifying undercloud.conf"
 sudo -H -u stack bash -c "sed -i 's|#image_path = \.|image_path = /home/stack/images|g' /home/stack/undercloud.conf" 
