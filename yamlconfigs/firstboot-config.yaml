@@ -14,7 +14,11 @@ resources:
         #!/bin/bash
         sleep 10
         echo "redhat" | passwd root --stdin
-
+        # fix broken security groups
+        sysctl -w net.bridge.bridge-nf-call-arptables=1
+        sysctl -w net.bridge.bridge-nf-call-ip6tables=1
+        sysctl -w net.bridge.bridge-nf-call-iptables=1
+        sysctl -p 
 outputs:
   OS::stack_id:
     value: {get_resource: userdata}
