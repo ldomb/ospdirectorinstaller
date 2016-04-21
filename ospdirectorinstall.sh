@@ -105,7 +105,7 @@ mkdir -p /home/stack/{images,templates}
 chown -R stack.stack /home/stack
 
 echo "Installing python-tripleoclient screen"
-sudo -H -u stack bash -c 'sudo yum install -y python-tripleoclient screen' 
+sudo -H -u stack bash -c 'sudo yum install -y python-tripleoclient python-hardware python-hardware-detect screen' 
 sudo -H -u stack bash -c 'sudo cp /usr/share/instack-undercloud/undercloud.conf.sample ~/undercloud.conf' 
 chown -R stack.stack /home/stack/undercloud.conf
 cd /home/stack
