@@ -96,17 +96,16 @@ echo "Registering System"
 subscription-manager register --username=$RHNUSER --password=$RHNPASSWORD
 subscription-manager attach --pool=$POOLID
 subscription-manager repos --disable='*'
-subscription-manager repos --enable=rhel-7-server-rpms --enable=rhel-7-server-optional-rpms --enable=rhel-7-server-extras-rpms --enable=rhel-7-server-openstack-7.0-rpms --enable=rhel-7-server-openstack-7.0-director-rpms
+ssubscription-manager repos --enable=rhel-7-server-rpms --enable=rhel-7-server-extras-rpms --enable=rhel-7-server-openstack-8-rpms --enable=rhel-7-server-openstack-8-director-rpms --enable rhel-7-server-rh-common-rpms
 
 echo "Updating system"
 yum install screen libguestfs-tools-c -y && update -y
 
-mkdir -p /etc/pki/instack-certs
 mkdir -p /home/stack/{images,templates} 
 chown -R stack.stack /home/stack
 
-echo "Installing  python-rdomanager-oscplugin screen"
-sudo -H -u stack bash -c 'sudo yum install -y python-rdomanager-oscplugin screen' 
+echo "Installing python-tripleoclient screen"
+sudo -H -u stack bash -c 'sudo yum install -y python-tripleoclient screen' 
 sudo -H -u stack bash -c 'sudo cp /usr/share/instack-undercloud/undercloud.conf.sample ~/undercloud.conf' 
 chown -R stack.stack /home/stack/undercloud.conf
 cd /home/stack
